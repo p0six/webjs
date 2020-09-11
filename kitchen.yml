@@ -6,8 +6,9 @@ driver:
 ## localhost on the host.
 ## see also: https://www.vagrantup.com/docs/networking/forwarded_ports.html
 
-#  network:
-#    - ["forwarded_port", {guest: 80, host: 8080}]
+driver_config:
+  network:
+  - ["forwarded_port", {guest: 2403, host: 2403}]
 
 provisioner:
   name: chef_zero
@@ -21,7 +22,6 @@ verifier:
   name: inspec
 
 platforms:
-  - name: ubuntu-18.04
   - name: centos-7
 
 suites:
