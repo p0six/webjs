@@ -14,5 +14,4 @@ run_list 'webjs::default'
 
 # Specify a custom source for a single cookbook:
 cookbook 'webjs', path: '.'
-cookbook 'line', '~> 2.9.0', :supermarket
 cookbook 'nodejs', '~> 7.0.1', :supermarket
