@@ -4,27 +4,6 @@
 #
 # Copyright:: 2020, The Authors, All Rights Reserved.
 
-include_recipe 'line::default'
-
-package 'httpd' do
-  version '2.4.6'
-  action :upgrade
-end
-
-## Should be using 'replace_only' method, but it doesn't actually exist in the line cookbook as docs say it should.
-# NoMethodError: undefined method `replace_only' for cookbook: webjs, recipe: default :Chef::Recipe
-replace_or_add 'Listen 80' do
-  path '/etc/httpd/conf/httpd.conf'
-  pattern 'Listen 80'
-  line 'Listen 0.0.0.0:80'
-  notifies :restart, 'service[httpd]', :immediately
-end
-
-service 'httpd' do
-  action [:enable, :start]
-  run_levels [3, 4, 5]
-end
-
 cookbook_file '/etc/yum.repos.d/mongodb-org-4.4.repo' do
   source 'mongodb-org-4.4.repo'
   mode '0755'
